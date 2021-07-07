@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.ServiceModel;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -52,14 +53,14 @@ namespace GR.Notifications.MNotify.Services
                 result.HasException = true;
                 result.Exception = ex;
                 result.Errors.Add(ex.Message);
-                Console.WriteLine("Simple Notification fault: {0}: {1}", ex.Code.Name, ex.Reason);
+                Debug.WriteLine("Simple Notification fault: {0}: {1}", ex.Code.Name, ex.Reason);
             }
             catch (Exception ex)
             {
                 result.HasException = true;
                 result.Exception = ex;
                 result.Errors.Add(ex.Message);
-                Console.WriteLine("Simple Notification fault: {0}", ex.Message);
+                Debug.WriteLine("Simple Notification fault: {0}", ex.Message);
             }
 
             return result;
@@ -81,6 +82,7 @@ namespace GR.Notifications.MNotify.Services
 
         public virtual async Task<MNotifyResult<string>> SentNotificationAsync(NotificationRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
             var result = new MNotifyResult<string>();
             try
             {
@@ -93,14 +95,38 @@ namespace GR.Notifications.MNotify.Services
                 result.HasException = true;
                 result.Exception = ex;
                 result.Errors.Add(ex.Message);
-                Console.WriteLine("Simple Notification fault: {0}: {1}", ex.Code.Name, ex.Reason);
+                Debug.WriteLine("Complex Notification fault: {0}: {1}", ex.Code.Name, ex.Reason);
             }
             catch (Exception ex)
             {
                 result.HasException = true;
                 result.Exception = ex;
                 result.Errors.Add(ex.Message);
-                Console.WriteLine("Simple Notification fault: {0}", ex.Message);
+                Debug.WriteLine("Complex Notification fault: {0}", ex.Message);
+            }
+
+            return result;
+        }
+
+        public virtual async Task<MNotifyResult<NotificationStatus[]>> GetNotificationStatusAsync(string notificationId)
+        {
+            var result = new MNotifyResult<NotificationStatus[]>();
+            try
+            {
+                result.Data = await _mNotify.GetNotificationStatusAsync(notificationId);
+                result.Success = true;
+            }
+            catch (FaultException ex)
+            {
+                result.HasException = true;
+                result.Exception = ex;
+                result.Errors.Add(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                result.HasException = true;
+                result.Exception = ex;
+                result.Errors.Add(ex.Message);
             }
 
             return result;
