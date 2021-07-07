@@ -17,7 +17,7 @@ Implementation of gov service MNotify
 Install-Package GR.Notifications.MNotify
 ```
 
-2. Register th services:
+2. Register the services:
 
 ```C#
 public class Startup
@@ -55,7 +55,9 @@ public class Startup
 ```
 
 `ServiceClientAddress` - url of service
+
 `ServiceCertificatePath` - physical path to pfx certificate
+
 `ServiceCertificatePassword` - certificate password
 
 4. Inject MNotify Service and send notifications
@@ -69,7 +71,7 @@ public class FooService{
     }
 
     public async Task FooMethodAsync(){
-        var sendResult = await mNotifyService.SentNotificationAsync(new MNotifyNotification
+        var sendResult = await _service.SentNotificationAsync(new MNotifyNotification
         {
             Sender = new MNotifyPerson("UserName", "foo@foo.com"),
             Recipient = new MNotifyPerson("UserName", "foo@foo.com"),
