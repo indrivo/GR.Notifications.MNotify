@@ -3,6 +3,6 @@ mono: none
 dotnet: 5.0.103
 dist: xenial
 install:
-- dotnet restore ./src/GraphQL.sln
+- dotnet restore ./src/GR.Notifications.sln
 script:
-- dotnet build ./src/GraphQL.sln
+- dotnet build ./src/GR.Notifications.sln
