@@ -30,5 +30,12 @@ namespace GR.Notifications.MNotify.Interfaces
         /// <param name="notification"></param>
         /// <returns></returns>
         Task<MNotifyResult<string>> SentNotificationAsync(MNotifyNotification notification);
+
+        /// <summary>
+        /// Get notification status
+        /// </summary>
+        /// <param name="notificationId"></param>
+        /// <returns></returns>
+        Task<MNotifyResult<NotificationStatus[]>> GetNotificationStatusAsync(string notificationId);
     }
 }
