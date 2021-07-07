@@ -5,7 +5,7 @@
     <Authors>Lupei Nicolae</Authors>
     <Company>Indrivo</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Description>Implementation of gov service MNotify</Description>
     <RepositoryUrl>https://github.com/indrivo/GR.Notifications.MNotify</RepositoryUrl>
     <PackageTags>MNotify</PackageTags>
@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Castle.Core" Version="4.4.0" />
     <PackageReference Include="FluentValidation" Version="10.2.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
